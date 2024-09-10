@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
+            $table->string('name', 100);
             $table->integer('fav');
-            $table->string('title');
-            $table->string('lead');
-            $table->string('text');
-            $table->string('tag');
+            $table->string('title', 100);
+            $table->text('lead');
+            $table->longText('text');
         });
     }
 

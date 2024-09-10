@@ -24,6 +24,30 @@
             </ul>
           </div>
   
+          @foreach ($articles as $article)
+          <div class="article-preview">
+            <div class="article-meta">
+              <a href="/profile/eric-simons"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
+              <div class="info">
+                <a href="/profile/eric-simons" class="author">{{ $article->name }}</a>
+                <span class="date">{{ $article->updated_at }}</span>
+              </div>
+              <button class="btn btn-outline-primary btn-sm pull-xs-right">
+                <i class="ion-heart"></i> {{ $article->fav }}
+              </button>
+            </div>
+            <a href="/article/how-to-build-webapps-that-scale" class="preview-link">
+              <h1>{{ $article->title }}</h1>
+              <p>{{ $article->lead }}</p>
+              <span>Read more...</span>
+              <ul class="tag-list">
+                <li class="tag-default tag-pill tag-outline">realworld</li>
+                <li class="tag-default tag-pill tag-outline">implementations</li>
+              </ul>
+            </a>
+          </div>
+          @endforeach
+
           <div class="article-preview">
             <div class="article-meta">
               <a href="/profile/eric-simons"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
