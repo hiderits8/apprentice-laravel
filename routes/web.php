@@ -25,6 +25,8 @@ Route::prefix('editor')
         Route::get('/', 'create')->name('create');
         Route::post('/', 'store')->name('store');
         Route::get('/{id}', 'edit')->name('edit');
+        Route::post('/{id}', 'update')->name('update');
+        Route::post('/{id}/destroy', 'destroy')->name('destroy');
     });
 
 Route::prefix('article')
