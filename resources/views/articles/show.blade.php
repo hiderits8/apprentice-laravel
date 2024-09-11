@@ -94,6 +94,24 @@
             <button class="btn btn-sm btn-primary">Post Comment</button>
           </div>
         </form>
+        
+        @foreach ($comments as $comment)
+        <div class="card">
+          <div class="card-block">
+            <p class="card-text">
+              {{ $comment->comment}}
+            </p>
+          </div>
+          <div class="card-footer">
+            <a href="/profile/author" class="comment-author">
+              <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
+            </a>
+            &nbsp;
+            <a href="/profile/jacob-schmidt" class="comment-author">{{ $comment->name }}</a>
+            <span class="date-posted">{{ $comment->updated_at }}</span>
+          </div>
+        </div>
+        @endforeach
 
         <div class="card">
           <div class="card-block">

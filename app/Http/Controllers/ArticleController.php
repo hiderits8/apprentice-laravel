@@ -45,7 +45,8 @@ class ArticleController extends Controller
     public function show(string $id)
     {
         $article = Article::find($id);
-        return view('articles.show', compact('article'));
+        $comments = Article::find($id)->comments;
+        return view('articles.show', compact('article', 'comments'));
     }
 
     /**
