@@ -36,7 +36,7 @@
                 <i class="ion-heart"></i> {{ $article->fav }}
               </button>
             </div>
-            <a href="/article/how-to-build-webapps-that-scale" class="preview-link">
+            <a href="/article/{{ $article->id }}" class="preview-link">
               <h1>{{ $article->title }}</h1>
               <p>{{ $article->lead }}</p>
               <span>Read more...</span>

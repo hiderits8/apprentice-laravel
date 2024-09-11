@@ -10,19 +10,21 @@
             <li>That title is required</li>
           </ul>
   
-          <form>
+          <form method="post" action="{{ route('articles.store')}}" >
+            @csrf
             <fieldset>
               <fieldset class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Article Title" />
+                <input type="text" name="title" class="form-control form-control-lg" placeholder="Article Title" />
               </fieldset>
               <fieldset class="form-group">
-                <input type="text" class="form-control" placeholder="What's this article about?" />
+                <input type="text" name="lead" class="form-control" placeholder="What's this article about?" />
               </fieldset>
               <fieldset class="form-group">
                 <textarea
                   class="form-control"
                   rows="8"
                   placeholder="Write your article (in markdown)"
+                  name="text"
                 ></textarea>
               </fieldset>
               <fieldset class="form-group">
@@ -31,7 +33,7 @@
                   <span class="tag-default tag-pill"> <i class="ion-close-round"></i> tag </span>
                 </div>
               </fieldset>
-              <button class="btn btn-lg pull-xs-right btn-primary" type="button">
+              <button class="btn btn-lg pull-xs-right btn-primary" type="submit">
                 Publish Article
               </button>
             </fieldset>

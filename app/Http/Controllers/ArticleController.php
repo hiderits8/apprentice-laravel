@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreArticleRequest;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -19,15 +21,22 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
-        //
+
+        Article::create([
+            'title' => $request->title,
+            'lead' => $request->lead,
+            'text' => $request->text,
+        ]);
+
+        return to_route('index');
     }
 
     /**
@@ -35,7 +44,8 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $article = Article::find($id);
+        return view('articles.show', compact('article'));
     }
 
     /**

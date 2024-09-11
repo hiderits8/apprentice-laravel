@@ -16,18 +16,24 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('index');
+
+Route::prefix('editor')
+    ->name('articles.')
+    ->controller(ArticleController::class)
+    ->group(function () {
+        Route::get('/', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{id}', 'edit')->name('edit');
+    });
 
 Route::prefix('article')
     ->name('articles.')
     ->controller(ArticleController::class)
     ->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
     });
-
-Route::get('/editor', function () {
-    return view('editor');
-});
 
 Route::get('/login', function () {
     return view('login');
