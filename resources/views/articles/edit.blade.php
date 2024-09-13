@@ -6,9 +6,13 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-10 offset-md-1 col-xs-12">
-          <ul class="error-messages">
-            <li>That title is required</li>
-          </ul>
+          @if ($errors->any())
+                  <ul class="error-messages">
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+          @endif
   
           <form method="post" action="{{ route('articles.update', ['id' => $article->id ])}}" >
             @csrf

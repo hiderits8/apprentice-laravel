@@ -85,7 +85,8 @@
 
     <div class="row">
       <div class="col-xs-12 col-md-8 offset-md-2">
-        <form method="post" action="{{ route('articles.addComment') }}" class="card comment-form">
+        <form method="post" action="{{ route('articles.addComment', ['id' => $article->id ]) }}" class="card comment-form">
+          @csrf
           <div class="card-block">
             <textarea name="comment" class="form-control" placeholder="Write a comment..." rows="3"></textarea>
           </div>
@@ -110,43 +111,17 @@
             &nbsp;
             <a href="/profile/jacob-schmidt" class="comment-author">{{ $comment->name }}</a>
             <span class="date-posted">{{ $comment->updated_at }}</span>
+            <form method="post" action="">
+            <span class="mod-options">
+              <i class="ion-trash-a"></i>
+            </span>
+            </form>
           </div>
         </div>
         @endforeach
 
-        <div class="card">
-          <div class="card-block">
-            <p class="card-text">
-              With supporting text below as a natural lead-in to additional content.
-            </p>
-          </div>
-          <div class="card-footer">
-            <a href="/profile/author" class="comment-author">
-              <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
-            </a>
-            &nbsp;
-            <a href="/profile/jacob-schmidt" class="comment-author">Jacob Schmidt</a>
-            <span class="date-posted">Dec 29th</span>
-          </div>
-        </div>
+        {{ $comments->links() }}
 
-        <div class="card">
-          <div class="card-block">
-            <p class="card-text">
-              With supporting text below as a natural lead-in to additional content.
-            </p>
-          </div>
-          <div class="card-footer">
-            <a href="/profile/author" class="comment-author">
-              <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
-            </a>
-            &nbsp;
-            <a href="/profile/jacob-schmidt" class="comment-author">Jacob Schmidt</a>
-            <span class="date-posted">Dec 29th</span>
-            <span class="mod-options">
-              <i class="ion-trash-a"></i>
-            </span>
-          </div>
         </div>
       </div>
     </div>

@@ -13,4 +13,10 @@ class Comment extends Model
     {
         $this->belongsTo(Article::class);
     }
+
+    protected $fillable = [
+        'article_id',
+        'comment',
+        'name',
+    ];
 }

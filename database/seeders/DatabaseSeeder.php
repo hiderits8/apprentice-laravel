@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $articles = Article::factory()->count(5)->hasComments(5)->create();
+        $articles = Article::factory()->count(8)->hasComments(5)->create();
         Tag::factory()->count(5)->hasAttached($articles)->create();
 
 

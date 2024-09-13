@@ -31,18 +31,20 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        if ($request->tag && !Tag::where('name', '=', $request->tag)->first()) {
-            Tag::create([
-                'name' => $request->tag,
-            ]);
-        }
         $article = Article::create([
             'title' => $request->title,
             'lead' => $request->lead,
             'text' => $request->text,
         ]);
-        $tag = Tag::where('name', '=', $request->tag)->first();
-        $article->tags()->attach($tag->id);
+        if ($request->tag && !Tag::where('name', '=', $request->tag)->first()) {
+            Tag::create([
+                'name' => $request->tag,
+            ]);
+            $tag = Tag::where('name', '=', $request->tag)->first();
+            $article->tags()->attach($tag->id);
+        }
+
+
         return to_route('index');
     }
 
@@ -52,21 +54,18 @@ class ArticleController extends Controller
     public function show(string $id)
     {
         $article = Article::find($id);
-        $comments = Article::find($id)->comments;
+        $comments = Comment::where('article_id', '=', $id)->orderByDesc('created_at')->paginate(5);
         return view('articles.show', compact('article', 'comments'));
     }
 
     public function addComment(Request $request, string $id)
     {
-        $comment = Comment::creat([
+        $comment = Comment::create([
+            'article_id' => $id,
             'comment' => $request->comment,
         ]);
-
-        $article = Article::find($id);
-        $comments = $article->comments;
-        $comments->attach($comment);
-
-        return to_route('articles.show');
+        $comment->save();
+        return to_route('articles.show', ['id' => $id]);
     }
 
     /**
@@ -82,20 +81,21 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreArticleRequest $request, string $id)
     {
+        $article = Article::find($id);
         if ($request->tag && !Tag::where('name', '=', $request->tag)->first()) {
             Tag::create([
                 'name' => $request->tag,
             ]);
+            //tag
+            $tag = Tag::where('name', '=', $request->tag)->first();
+            $article->tags()->attach($tag->id);
         }
-        $article = Article::find($id);
         $article->title = $request->title;
         $article->lead = $request->lead;
         $article->text = $request->text;
-        //tag
-        $tag = Tag::where('name', '=', $request->tag)->first();
-        $article->tags()->attach($tag->id);
+
         $article->save();
 
         return to_route('index');
