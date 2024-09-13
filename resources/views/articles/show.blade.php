@@ -85,12 +85,13 @@
 
     <div class="row">
       <div class="col-xs-12 col-md-8 offset-md-2">
-        <form class="card comment-form">
+        <form method="post" action="{{ route('articles.addComment') }}" class="card comment-form">
           <div class="card-block">
-            <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
+            <textarea name="comment" class="form-control" placeholder="Write a comment..." rows="3"></textarea>
           </div>
           <div class="card-footer">
             <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
+            <a href="/profile/jacob-schmidt" class="comment-author">sample_user</a>
             <button class="btn btn-sm btn-primary">Post Comment</button>
           </div>
         </form>

@@ -41,8 +41,12 @@
               <p>{{ $article->lead }}</p>
               <span>Read more...</span>
               <ul class="tag-list">
-                <li class="tag-default tag-pill tag-outline">realworld</li>
-                <li class="tag-default tag-pill tag-outline">implementations</li>
+                @foreach ($article->tags as $tag)
+
+                <li class="tag-default tag-pill tag-outline">{{ $tag->name }}</li>
+
+                @endforeach
+                
               </ul>
             </a>
           </div>

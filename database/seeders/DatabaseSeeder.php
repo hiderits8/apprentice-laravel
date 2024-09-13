@@ -6,7 +6,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Article;
-use App\Models\Comment;
+use App\Models\Tag;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Article::factory(5)->hasComments(5)->create();
+        $articles = Article::factory()->count(5)->hasComments(5)->create();
+        Tag::factory()->count(5)->hasAttached($articles)->create();
+
+
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

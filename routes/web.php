@@ -35,6 +35,7 @@ Route::prefix('article')
     ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
+        Route::post('/{id}', 'addComment')->name('addComment');
     });
 
 Route::get('/login', function () {
