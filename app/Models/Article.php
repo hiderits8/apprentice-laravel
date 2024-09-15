@@ -20,6 +20,8 @@ class Article extends Model
     }
 
     protected $fillable = [
+        'name',
+        'fav',
         'title',
         'lead',
         'text',
