@@ -1,5 +1,6 @@
 ## ステップ1
 以前作成した RealWorld のコードに、テストコードを1つでよいので書いてください。
+https://github.com/hiderits8/apprentice-laravel/blob/main/tests/Unit/createArticleTest.php
 
 ## ステップ2 (advanced)
 RealWorld のコードにおいて、何をテストすべきか、挙げてください。
